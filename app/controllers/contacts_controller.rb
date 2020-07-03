@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        SendContactEmailJob.set(wait: 0.seconds).perform_now(@contact)
         flash[:notice] = 'Success'
         format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @contact }
