@@ -14,5 +14,8 @@ application up and running.
   export GMAIL_PASSWORD=""  #your gmail password
   Please refer and enable this: https://myaccount.google.com/lesssecureapps
 
+* For multi language Support
+  add params eg. www.domain.com/?locale=pt
+
 * How to run the test suite
   bundle exec rspec
