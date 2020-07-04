@@ -4,15 +4,15 @@ class ContactsController < ApplicationController
     @contact = Contact.new
   end
 
-  # POST /leads
-  # POST /leads.json
+  # POST /contacts
+  # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
 
     respond_to do |format|
       if @contact.save
         SendContactEmailJob.set(wait: 0.seconds).perform_now(@contact)
-        flash[:notice] = 'Success'
+        flash[:notice] = 'Thank you!'
         format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @contact }
       else
